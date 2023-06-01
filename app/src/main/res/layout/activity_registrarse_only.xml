@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/blue_light">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/blue_light"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/onlyletras"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/onlyfoto"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:background="@drawable/fondo_redondeado">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:padding="24dp"
+            android:text="Create your account"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingresaFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:hint="Fist Name"
+            android:maxLength="10"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingresaLastName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:hint="Last Name"
+            android:maxLength="10"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingresaCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="text"
+            android:hint="@     Email"
+            android:maxLength="35"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingresaContraseniaR"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="numberPassword"
+            android:hint="***   Passwoard"
+            android:maxLength="10"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"/>
+
+        <Button
+            android:id="@+id/registrarse_only"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_light"
+            android:text="Sign Up"
+            app:cornerRadius="30dp"
+            android:layout_gravity="center"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/loguearse_desde_registro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/blue_light"
+            android:text="Already have an account? Log In"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:elevation="0dp"
+            android:textAllCaps="false"
+            android:stateListAnimator="@null"
+            tools:ignore="HardcodedText,SmallSp" />
+
+
+    </LinearLayout>
+</LinearLayout>
