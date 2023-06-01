@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -63,6 +64,79 @@
             android:textSize="35sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="369dp"
+        android:layout_height="70dp"
+        android:background="@drawable/fondo_redondeado_2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8s"
+        app:layout_constraintStart_toStartOf="@+id/guideline7s">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="15.dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:background="#FFFFFF"
+            android:scaleType="centerInside"
+            android:tint="@color/blue_light"
+            app:srcCompat="@drawable/home"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <ImageButton
+            android:id="@+id/explorar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:background="#FFFFFF"
+            android:scaleType="centerInside"
+            android:tint="@color/blue_light"
+            app:srcCompat="@drawable/explore"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <ImageButton
+            android:id="@+id/posts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:background="#FFFFFF"
+            android:scaleType="centerInside"
+            android:tint="@color/blue_light"
+            app:srcCompat="@drawable/mail"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <ImageButton
+            android:id="@+id/perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:background="#FFFFFF"
+            android:scaleType="centerInside"
+            android:tint="@color/blue_light"
+            app:srcCompat="@drawable/profile"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
