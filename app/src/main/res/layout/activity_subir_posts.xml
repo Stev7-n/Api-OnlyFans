@@ -66,6 +66,53 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="369dp"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline7sp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPosts"
+        app:layout_constraintVertical_bias="0.5">
+
+
+        <EditText
+            android:id="@+id/tituloSubirPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Titulo Publicacion" />
+
+        <EditText
+            android:id="@+id/descripcionSubirPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Descripcion Publicacion"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <ImageView
+            android:id="@+id/subirImagenPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/seleccionarImagenButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Imagen" />
+
+        <Button
+            android:id="@+id/subirPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subir" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="369dp"
         android:layout_height="70dp"
