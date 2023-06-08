@@ -63,12 +63,21 @@
             android:textSize="35sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/cerrar_sesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cerrar Sesion" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="247dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toStartOf="@+id/guideline8m"
         app:layout_constraintHorizontal_bias="0.496"
@@ -149,16 +158,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/cerrar_sesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8m"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/guideline7m"
-        app:layout_constraintTop_toTopOf="@+id/guideline4m"
-        app:layout_constraintVertical_bias="0.769" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

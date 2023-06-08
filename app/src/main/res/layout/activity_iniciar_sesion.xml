@@ -86,14 +86,14 @@
             android:id="@+id/registrar_usuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="Sign up for OnlyFans"
-            android:layout_marginTop="3dp"
-            android:textColor="@color/blue_light"
             android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:backgroundTint="@color/white"
             android:elevation="0dp"
-            android:textAllCaps="false"
             android:stateListAnimator="@null"
+            android:text="Sign up for OnlyFans"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_light"
             tools:ignore="HardcodedText" />
 
         <Button

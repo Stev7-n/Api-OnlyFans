@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +30,7 @@ public class registrarse_only extends AppCompatActivity {
     Button loguearse_desde_registro;
 
     FirebaseAuth firebaseAuth;
+    DatabaseReference usersRef;
 
     String email;
     String password;
@@ -45,6 +48,7 @@ public class registrarse_only extends AppCompatActivity {
         loguearse_desde_registro = findViewById(R.id.loguearse_desde_registro);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        usersRef = FirebaseDatabase.getInstance().getReference("users");
 
         registrarse_only.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +67,16 @@ public class registrarse_only extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+
+                                        String firstName = ingresaFirstName.getText().toString().trim();
+                                        String lastName = ingresaLastName.getText().toString().trim();
+
+                                        String userId = firebaseAuth.getCurrentUser().getUid();
+                                        DatabaseReference currentUserRef = usersRef.child(userId);
+
+                                        currentUserRef.child("firstName").setValue(firstName);
+                                        currentUserRef.child("lastName").setValue(lastName);
+
                                         Toast.makeText(registrarse_only.this, "Cuenta creada con exito", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(registrarse_only.this, menu_inicial.class);
                                         startActivity(intent);

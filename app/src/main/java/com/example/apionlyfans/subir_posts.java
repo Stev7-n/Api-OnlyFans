@@ -102,7 +102,7 @@ public class subir_posts extends AppCompatActivity {
             }
         });
 
-        publicacionesRef = FirebaseDatabase.getInstance().getReference().child("publicaciones");
+        publicacionesRef = FirebaseDatabase.getInstance().getReference().child("publicaciones3");
         storageRef = FirebaseStorage.getInstance().getReference().child("imagenes_publicaciones");
 
         seleccionarImagenButton.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +175,9 @@ public class subir_posts extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(subir_posts.this, "Publicación subida correctamente", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(subir_posts.this, menu_inicial.class);
+                                                    startActivity(intent);
+                                                    finish();
                                                 } else {
                                                     Toast.makeText(subir_posts.this, "Error al subir la publicación", Toast.LENGTH_SHORT).show();
                                                 }

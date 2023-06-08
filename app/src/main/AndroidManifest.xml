@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <application
@@ -15,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ApiOnlyFans"
         tools:targetApi="31">
+        <activity
+            android:name=".card_view_perfiles"
+            android:exported="false" />
+        <activity
+            android:name=".card_view_posts"
+            android:exported="false" />
         <activity
             android:name=".perfil_ajustes"
             android:exported="false" />

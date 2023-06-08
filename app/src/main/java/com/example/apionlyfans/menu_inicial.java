@@ -8,9 +8,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class menu_inicial extends AppCompatActivity {
 
@@ -20,6 +25,10 @@ public class menu_inicial extends AppCompatActivity {
     ImageButton perfil;
     Button cerrar_sesion;
     FirebaseAuth firebaseAuth;
+
+    RecyclerView recyclerView;
+    List<PostAdapter.Post> postList;
+    PostAdapter postAdapter;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -79,6 +88,17 @@ public class menu_inicial extends AppCompatActivity {
             }
         });
 
+        recyclerView = findViewById(R.id.recyclerView);
+        postList = new ArrayList<>();
+        postAdapter = new PostAdapter(postList);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(postAdapter);
+
+        postAdapter.obtenerPublicaciones();
     }
 
     @Override
@@ -89,10 +109,10 @@ public class menu_inicial extends AppCompatActivity {
             irMain();
         }
     }
+
     private void irMain() {
         Intent intent = new Intent(menu_inicial.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
-
 }
