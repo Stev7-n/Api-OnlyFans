@@ -153,6 +153,8 @@ public class subir_posts extends AppCompatActivity {
     }
 
     private void subirImagen(String titulo, String descripcion) {
+        String uidDelUsuario = firebaseAuth.getCurrentUser().getUid();
+
         StorageReference imageRef = storageRef.child(System.currentTimeMillis() + ".jpg");
 
         imageRef.putFile(selectedImageUri)
@@ -164,13 +166,15 @@ public class subir_posts extends AppCompatActivity {
                             public void onSuccess(Uri downloadUrl) {
                                 String imagenUrl = downloadUrl.toString();
 
+                                String uidDispositivo = FirebaseAuth.getInstance().getUid();
+
                                 Map<String, Object> publicacion = new HashMap<>();
                                 publicacion.put("titulo", titulo);
                                 publicacion.put("descripcion", descripcion);
                                 publicacion.put("imagen", imagenUrl);
+                                publicacion.put("uidUsuario", uidDispositivo);
 
-                                publicacionesRef.push().setValue(publicacion)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                publicacionesRef.push().setValue(publicacion).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -188,4 +192,5 @@ public class subir_posts extends AppCompatActivity {
                     }
                 });
     }
+
 }

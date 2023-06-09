@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,10 +24,13 @@ import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
     private List<Post> postList;
+    private DatabaseReference usersRef;
 
     public PostAdapter(List<Post> postList) {
         this.postList = postList;
+        usersRef = FirebaseDatabase.getInstance().getReference().child("users");
     }
+
 
     @NonNull
     @Override
@@ -50,6 +55,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         private TextView tituloTextView;
         private TextView descripcionTextView;
         private ImageView fotoPostImageView;
+        private ImageView fotoPerfilUsuarioMensaje;
 
         public PostViewHolder(View itemView) {
             super(itemView);
@@ -57,12 +63,48 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             descripcionTextView = itemView.findViewById(R.id.descripcionPost);
             fotoPostImageView = itemView.findViewById(R.id.fotoPost);
             nombreUsuarioPosts = itemView.findViewById(R.id.nombreUsuarioPosts);
+            fotoPerfilUsuarioMensaje = itemView.findViewById(R.id.fotoPerfilUsuarioMensaje);
         }
 
         public void bind(Post post) {
             tituloTextView.setText(post.getTitle());
             descripcionTextView.setText(post.getDescription());
-            nombreUsuarioPosts.setText("@" + post.getNombreUsuario());
+
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser != null) {
+                String uidUsuarioActual = currentUser.getUid();
+
+                usersRef.child(uidUsuarioActual).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            String firstName = dataSnapshot.child("firstName").getValue(String.class);
+                            String fotoPerfilUrl = dataSnapshot.child("fotoPerfil").getValue(String.class);
+
+                            String nombreUsuario;
+                            if (firstName != null) {
+                                nombreUsuario = firstName;
+                            } else {
+                                nombreUsuario = "Usuario sin nombre";
+                            }
+
+                            nombreUsuarioPosts.setText("@" + nombreUsuario);
+
+                            RequestOptions options = new RequestOptions()
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+                            Glide.with(itemView.getContext())
+                                    .load(fotoPerfilUrl)
+                                    .apply(options)
+                                    .into(fotoPerfilUsuarioMensaje);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+            }
 
             RequestOptions options = new RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL);
@@ -72,6 +114,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     .apply(options)
                     .into(fotoPostImageView);
         }
+
 
     }
 
