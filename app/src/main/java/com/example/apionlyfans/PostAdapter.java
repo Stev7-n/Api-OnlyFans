@@ -1,5 +1,6 @@
 package com.example.apionlyfans;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private TextView nombreUsuarioPosts;
+        private ImageView fotoPerfilUsuarioMensaje;
         private TextView tituloTextView;
         private TextView descripcionTextView;
         private ImageView fotoPostImageView;
@@ -57,12 +59,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             descripcionTextView = itemView.findViewById(R.id.descripcionPost);
             fotoPostImageView = itemView.findViewById(R.id.fotoPost);
             nombreUsuarioPosts = itemView.findViewById(R.id.nombreUsuarioPosts);
+            fotoPerfilUsuarioMensaje = itemView.findViewById(R.id.fotoPerfilUsuarioMensaje);
         }
 
+        @SuppressLint("SetTextI18n")
         public void bind(Post post) {
             tituloTextView.setText(post.getTitle());
             descripcionTextView.setText(post.getDescription());
-            nombreUsuarioPosts.setText("@" + post.getNombreUsuario());
+            nombreUsuarioPosts.setText("@" + post.getNombreUsuario().toLowerCase() + post.getApellidoUsuario().toLowerCase());
+
+            Glide.with(itemView.getContext())
+                    .load(post.getUsuarioUrl())
+                    .into(fotoPerfilUsuarioMensaje);
 
             RequestOptions options = new RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL);
@@ -80,12 +88,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         private String description;
         private String imageUrl;
         private String nombreUsuario;
+        private String apellidoUsuario;
+        private String usuarioUrl;
 
-        public Post(String title, String description, String imageUrl, String nombreUsuario) {
+        public Post(String title, String description, String imageUrl, String nombreUsuario, String apellidoUsuario, String usuarioUrl) {
             this.title = title;
             this.description = description;
             this.imageUrl = imageUrl;
             this.nombreUsuario = nombreUsuario;
+            this.apellidoUsuario = apellidoUsuario;
+            this.usuarioUrl = usuarioUrl;
         }
 
         public String getTitle() {
@@ -101,6 +113,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         }
 
         public String getNombreUsuario() {return nombreUsuario;}
+        public String getApellidoUsuario() {return apellidoUsuario;}
+        public String getUsuarioUrl() {return usuarioUrl;}
     }
 
     public void obtenerPublicaciones() {
@@ -116,8 +130,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     String descripcion = snapshot.child("descripcion").getValue(String.class);
                     String imageUrl = snapshot.child("imagen").getValue(String.class);
                     String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
+                    String apellidoUsuario = snapshot.child("apellidoUsuario").getValue(String.class);
+                    String fotoUsuario = snapshot.child("fotoUsuario").getValue(String.class);
 
-                    Post post = new Post(titulo, descripcion, imageUrl, nombreUsuario);
+                    Post post = new Post(titulo, descripcion, imageUrl, nombreUsuario, apellidoUsuario, fotoUsuario);
                     postList.add(post);
                 }
                 notifyDataSetChanged();

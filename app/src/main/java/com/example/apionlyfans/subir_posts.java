@@ -19,8 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -123,14 +127,37 @@ public class subir_posts extends AppCompatActivity {
                 } else if (descripcion.isEmpty()) {
                     Toast.makeText(subir_posts.this, "Ingresa una descripción", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (selectedImageUri != null) {
-                        subirImagen(titulo, descripcion);
+                    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                    if (currentUser != null) {
+                        String userId = currentUser.getUid();
+                        DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+                        usuariosRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    String nombreUsuario = dataSnapshot.child("firstName").getValue(String.class);
+                                    String apellidoUsuario = dataSnapshot.child("lastName").getValue(String.class);
+                                    String fotoUsuario = dataSnapshot.child("fotoPerfil").getValue(String.class);
+
+                                    if (selectedImageUri != null) {
+                                        subirImagen(titulo, descripcion, nombreUsuario, apellidoUsuario, fotoUsuario);
+                                    } else {
+                                        Toast.makeText(subir_posts.this, "Selecciona una imagen", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
+                        });
                     } else {
-                        Toast.makeText(subir_posts.this, "Selecciona una imagen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(subir_posts.this, "Error", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+
     }
 
     private void abrirGaleria() {
@@ -158,7 +185,7 @@ public class subir_posts extends AppCompatActivity {
         }
     }
 
-    private void subirImagen(String titulo, String descripcion) {
+    private void subirImagen(String titulo, String descripcion, String nombreUsuario, String apellidoUsuario, String fotoUsuario) {
         StorageReference imageRef = storageRef.child(System.currentTimeMillis() + ".jpg");
 
         imageRef.putFile(selectedImageUri)
@@ -174,6 +201,9 @@ public class subir_posts extends AppCompatActivity {
                                 publicacion.put("titulo", titulo);
                                 publicacion.put("descripcion", descripcion);
                                 publicacion.put("imagen", imagenUrl);
+                                publicacion.put("nombreUsuario", nombreUsuario);
+                                publicacion.put("apellidoUsuario", apellidoUsuario);
+                                publicacion.put("fotoUsuario", fotoUsuario);
 
                                 publicacionesRef.push().setValue(publicacion)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -189,6 +219,7 @@ public class subir_posts extends AppCompatActivity {
                                                 }
                                             }
                                         });
+
                             }
                         });
                     }
