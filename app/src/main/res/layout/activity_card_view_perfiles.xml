@@ -5,8 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10sp"
-    tools:context=".card_view_posts">
+    app:cardCornerRadius="20dp"
+    tools:context=".card_view_posts"
+    app:cardUseCompatPadding="true"
+    android:elevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,15 +36,21 @@
                 android:id="@+id/nombrePerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
                 android:text="Este es el nombre del perfil" />
 
             <TextView
                 android:id="@+id/descripcionPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:text="Esta es la descripcion del perfil" />
+                android:text="Este es el usuario del perfil" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="Follow"/>
 
         </LinearLayout>
     </LinearLayout>

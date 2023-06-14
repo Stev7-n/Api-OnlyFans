@@ -1,5 +1,6 @@
 package com.example.apionlyfans;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -101,6 +102,7 @@ public class perfil_ajustes extends AppCompatActivity {
         String userId = firebaseAuth.getCurrentUser().getUid();
         DatabaseReference currentUserRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
         currentUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

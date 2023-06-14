@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10sp"
+    app:cardCornerRadius="10dp"
+    android:elevation="4dp"
+    app:cardUseCompatPadding="true"
     tools:context=".card_view_posts">
 
     <LinearLayout
@@ -34,7 +36,8 @@
                 android:id="@+id/nombreUsuarioPosts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:id="@+id/tituloPost"
@@ -46,13 +49,18 @@
                 android:id="@+id/descripcionPost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"/>
 
             <ImageView
                 android:id="@+id/fotoPost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"/>
 
         </LinearLayout>
     </LinearLayout>

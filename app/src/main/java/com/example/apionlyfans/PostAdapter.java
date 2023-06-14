@@ -104,7 +104,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     public void obtenerPublicaciones() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("publicaciones3");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("publicaciones4");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

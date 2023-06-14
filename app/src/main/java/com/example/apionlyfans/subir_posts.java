@@ -102,7 +102,7 @@ public class subir_posts extends AppCompatActivity {
             }
         });
 
-        publicacionesRef = FirebaseDatabase.getInstance().getReference().child("publicaciones3");
+        publicacionesRef = FirebaseDatabase.getInstance().getReference().child("publicaciones4");
         storageRef = FirebaseStorage.getInstance().getReference().child("imagenes_publicaciones");
 
         seleccionarImagenButton.setOnClickListener(new View.OnClickListener() {
@@ -118,10 +118,16 @@ public class subir_posts extends AppCompatActivity {
                 String titulo = tituloSubirPost.getText().toString();
                 String descripcion = descripcionSubirPost.getText().toString();
 
-                if (selectedImageUri != null) {
-                    subirImagen(titulo, descripcion);
+                if (titulo.isEmpty()) {
+                    Toast.makeText(subir_posts.this, "Ingresa un título", Toast.LENGTH_SHORT).show();
+                } else if (descripcion.isEmpty()) {
+                    Toast.makeText(subir_posts.this, "Ingresa una descripción", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(subir_posts.this, "Selecciona una imagen", Toast.LENGTH_SHORT).show();
+                    if (selectedImageUri != null) {
+                        subirImagen(titulo, descripcion);
+                    } else {
+                        Toast.makeText(subir_posts.this, "Selecciona una imagen", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

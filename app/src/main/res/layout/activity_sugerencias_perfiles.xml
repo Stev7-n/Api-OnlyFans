@@ -139,4 +139,16 @@
 
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPerfiles"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8s"
+        app:layout_constraintStart_toStartOf="@+id/guideline7s"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSugerencias" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
