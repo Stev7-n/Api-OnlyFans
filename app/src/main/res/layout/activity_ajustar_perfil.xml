@@ -16,18 +16,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cambiarFotoPerfil"
+            android:layout_width="180sp"
+            android:layout_height="180sp"
+            android:layout_gravity="center"
             android:layout_marginStart="22dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="8dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/user" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="8dp"
+            android:text="Haz click sobre la imagen para cambiar tu foto de perfil"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresa"
+            android:id="@+id/cambiarFirstName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="22dp"
@@ -42,7 +54,7 @@
             app:cornerRadius="20dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresa2"
+            android:id="@+id/cambiarLastName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="22dp"
@@ -57,7 +69,7 @@
             app:cornerRadius="20dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresa3"
+            android:id="@+id/cambiarUsuario"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="22dp"
@@ -72,7 +84,7 @@
             app:cornerRadius="20dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresa4"
+            android:id="@+id/cambiarEdad"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="22dp"
@@ -80,14 +92,14 @@
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="8dp"
             android:hint="Age"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLength="35"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresa5"
+            android:id="@+id/cambiarNumeroTelefono"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="22dp"
@@ -95,14 +107,14 @@
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="8dp"
             android:hint="Number Phone"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLength="35"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresa6"
+            android:id="@+id/cambiarNacionalidad"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="22dp"
@@ -122,7 +134,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/guardarCambios"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -133,7 +145,7 @@
                 android:text="Save Changes" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/cerrarSesion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

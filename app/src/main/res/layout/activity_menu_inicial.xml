@@ -10,28 +10,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_begin="37dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_begin="695dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_begin="21dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_end="20dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -64,12 +64,6 @@
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
-        <Button
-            android:id="@+id/cerrar_sesion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cerrar Sesion" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

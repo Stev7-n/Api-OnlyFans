@@ -122,10 +122,10 @@ public class subir_posts extends AppCompatActivity {
                 String titulo = tituloSubirPost.getText().toString();
                 String descripcion = descripcionSubirPost.getText().toString();
 
-                if (titulo.isEmpty()) {
-                    Toast.makeText(subir_posts.this, "Ingresa un título", Toast.LENGTH_SHORT).show();
-                } else if (descripcion.isEmpty()) {
-                    Toast.makeText(subir_posts.this, "Ingresa una descripción", Toast.LENGTH_SHORT).show();
+                if (titulo.isEmpty() || titulo.matches("\\s+")) {
+                    Toast.makeText(subir_posts.this, "Ingresa un título válido", Toast.LENGTH_SHORT).show();
+                } else if (descripcion.isEmpty() || descripcion.matches("\\s+")) {
+                    Toast.makeText(subir_posts.this, "Ingresa una descripción válida", Toast.LENGTH_SHORT).show();
                 } else {
                     FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                     if (currentUser != null) {

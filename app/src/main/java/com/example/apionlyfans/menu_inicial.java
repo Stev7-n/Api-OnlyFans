@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +22,6 @@ public class menu_inicial extends AppCompatActivity {
     ImageButton explorar;
     ImageButton posts;
     ImageButton perfil;
-    Button cerrar_sesion;
     FirebaseAuth firebaseAuth;
 
     RecyclerView recyclerView;
@@ -40,7 +38,6 @@ public class menu_inicial extends AppCompatActivity {
         explorar = findViewById(R.id.explorar);
         posts = findViewById(R.id.posts);
         perfil = findViewById(R.id.perfil);
-        cerrar_sesion = findViewById(R.id.cerrar_sesion);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -77,14 +74,6 @@ public class menu_inicial extends AppCompatActivity {
                 Intent intent = new Intent(menu_inicial.this, perfil_ajustes.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        cerrar_sesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                irMain();
             }
         });
 

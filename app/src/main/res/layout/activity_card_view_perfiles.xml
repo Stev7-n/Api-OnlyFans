@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="30dp"
     tools:context=".card_view_posts"
     app:cardUseCompatPadding="true"
     android:elevation="4dp">
@@ -13,44 +13,61 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-            <ImageView
-                android:id="@+id/fotoPerfilMensaje"
-                android:layout_width="46sp"
-                android:layout_height="46sp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fotoPerfilUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/nombrePerfil"
-                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:text="Este es el nombre del perfil" />
 
             <TextView
-                android:id="@+id/descripcionPerfil"
+                android:id="@+id/usuarioPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Este es el usuario del perfil" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
             <Button
+                android:id="@+id/follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
-                android:text="Follow"/>
+                android:textSize="12sp"
+                android:text="@string/follow"
+                android:elevation="0dp"
+                android:backgroundTint="@color/white"
+                android:stateListAnimator="@null"
+                android:textColor="@color/blue_light"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
         </LinearLayout>
     </LinearLayout>

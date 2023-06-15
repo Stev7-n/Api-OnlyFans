@@ -42,6 +42,7 @@
                     <TextView
                         android:id="@+id/nombreUsuarioPosts"
                         android:layout_width="match_parent"
+                        android:textStyle="bold"
                         android:layout_marginBottom="10dp"
                         android:text="Hola"
                         android:layout_height="wrap_content"/>
