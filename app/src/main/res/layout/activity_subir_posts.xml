@@ -74,54 +74,54 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutPosts"
         android:gravity="center">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline7sp"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutPosts"
-            app:layout_constraintVertical_bias="0.5">
+            android:layout_height="match_parent">
 
-
-            <EditText
-                android:id="@+id/tituloSubirPost"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Titulo Publicacion"
-                android:inputType="text" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/descripcionSubirPost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="Descripcion Publicacion"
-                android:inputType="textMultiLine" />
 
-            <ImageView
-                android:id="@+id/subirImagenPost"
-                android:layout_width="240sp"
-                android:layout_gravity="center"
-                android:layout_height="240sp" />
+                <EditText
+                    android:id="@+id/tituloSubirPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="20"
+                    android:maxLength="20"
+                    android:hint="Titulo Publicacion"
+                    android:inputType="text" />
 
-            <Button
-                android:id="@+id/seleccionarImagenButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Seleccionar Imagen" />
+                <EditText
+                    android:id="@+id/descripcionSubirPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:maxLength="90"
+                    android:gravity="start|top"
+                    android:hint="Descripcion Publicacion"
+                    android:inputType="textMultiLine" />
 
-            <Button
-                android:id="@+id/subirPost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Subir" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/subirImagenPost"
+                    android:layout_width="240sp"
+                    android:layout_gravity="center"
+                    android:layout_height="240sp" />
 
+                <Button
+                    android:id="@+id/seleccionarImagenButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccionar Imagen" />
+
+                <Button
+                    android:id="@+id/subirPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Subir" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout

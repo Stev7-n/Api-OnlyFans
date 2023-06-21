@@ -61,6 +61,7 @@ public class sugerencias_perfiles extends AppCompatActivity {
         recyclerViewPerfiles = findViewById(R.id.recyclerViewPerfiles);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         recyclerViewPerfiles.setLayoutManager(layoutManager);
 
         perfilList = new ArrayList<>();

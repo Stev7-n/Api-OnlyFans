@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ public class perfil_ajustes extends AppCompatActivity {
     TextView nombreUsuarioPerfil;
     TextView nombreUsuarioPerfilJunto;
     Button editarPerfil;
+    RecyclerView recycler_publicaciones_propias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

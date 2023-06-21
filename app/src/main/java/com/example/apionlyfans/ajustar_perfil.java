@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -110,6 +111,18 @@ public class ajustar_perfil extends AppCompatActivity {
 
         if (nuevoFirstName.isEmpty() || nuevoLastName.isEmpty() || nuevoUsuario.isEmpty() || edad.isEmpty() || numeroTelefono.isEmpty() || nacionalidad.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int edadInt = Integer.parseInt(edad);
+        if (edadInt < 18) {
+            Toast.makeText(this, "Debes ser mayor de edad para crear una cuenta en esta aplicacion", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(this, "No se puede guardar los datos. El usuario no está autenticado", Toast.LENGTH_SHORT).show();
             return;
         }
 

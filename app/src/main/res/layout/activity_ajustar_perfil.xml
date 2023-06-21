@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ajustar_perfil">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,7 +56,7 @@
             android:layout_marginBottom="8dp"
             android:hint="Change First Name"
             android:inputType="text"
-            android:maxLength="35"
+            android:maxLength="10"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
@@ -63,7 +71,7 @@
             android:layout_marginBottom="8dp"
             android:hint="Change Last Name"
             android:inputType="text"
-            android:maxLength="35"
+            android:maxLength="10"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
@@ -78,7 +86,7 @@
             android:layout_marginBottom="8dp"
             android:hint="NickName"
             android:inputType="text"
-            android:maxLength="35"
+            android:maxLength="12"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
@@ -93,7 +101,7 @@
             android:layout_marginBottom="8dp"
             android:hint="Age"
             android:inputType="number"
-            android:maxLength="35"
+            android:maxLength="2"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
@@ -108,7 +116,7 @@
             android:layout_marginBottom="8dp"
             android:hint="Number Phone"
             android:inputType="number"
-            android:maxLength="35"
+            android:maxLength="10"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
@@ -123,7 +131,7 @@
             android:layout_marginBottom="18dp"
             android:hint="Nationality"
             android:inputType="text"
-            android:maxLength="35"
+            android:maxLength="12"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
@@ -159,5 +167,6 @@
 
     </LinearLayout>
 
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.example.apionlyfans;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,13 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +40,8 @@ public class registrarse_only extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     DatabaseReference usersRef;
-
+    FirebaseStorage storage;
+    StorageReference storageRef;
     String email;
     String password;
 
@@ -49,6 +59,8 @@ public class registrarse_only extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference("users");
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
 
         registrarse_only.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,17 +89,15 @@ public class registrarse_only extends AppCompatActivity {
                                         currentUserRef.child("firstName").setValue(firstName);
                                         currentUserRef.child("lastName").setValue(lastName);
 
-                                        Toast.makeText(registrarse_only.this, "Cuenta creada con exito", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(registrarse_only.this, menu_inicial.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }else {
+                                        subirImagenFirebase(userId);
+
+                                    } else {
                                         Toast.makeText(registrarse_only.this, "Una cuenta asociada a este correo ya existe", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                         }
-                    }else {
+                    } else {
                         Toast.makeText(registrarse_only.this, "Direccion de correo invalida", Toast.LENGTH_SHORT).show();
                     }
 
@@ -112,5 +122,56 @@ public class registrarse_only extends AppCompatActivity {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    private void subirImagenFirebase(String userId) {
+        StorageReference fotoPerfilRef = storageRef.child("perfil_fotos").child(userId + ".jpg");
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        InputStream inputStream = null;
+        try {
+            inputStream = getContentResolver().openInputStream(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/drawable/user"));
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = fotoPerfilRef.putBytes(data);
+
+        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if (task.isSuccessful()) {
+                    fotoPerfilRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String fotoPerfilUrl = uri.toString();
+                            DatabaseReference currentUserRef = usersRef.child(userId);
+                            currentUserRef.child("fotoPerfil").setValue(fotoPerfilUrl);
+
+                            Toast.makeText(registrarse_only.this, "Cuenta creada con éxito", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(registrarse_only.this, menu_inicial.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                } else {
+                    Toast.makeText(registrarse_only.this, "Error al subir la imagen", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

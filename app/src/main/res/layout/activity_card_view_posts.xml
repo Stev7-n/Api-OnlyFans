@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/cardviewPost"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     android:elevation="4dp"
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,6 +81,60 @@
                 android:layout_marginBottom="10dp"
                 android:src="@mipmap/ic_launcher" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/meEncanta"
+                    android:layout_width="32dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/corazon_vector2" />
+
+                <TextView
+                    android:id="@+id/contadorLikes"
+                    android:layout_width="25dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+
+                <ImageButton
+                    android:id="@+id/comentarios"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/comentario_vector2" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"/>
+
+                <ImageButton
+                    android:id="@+id/favoritos"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/marcador_vector2" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
