@@ -3,9 +3,8 @@ package com.example.apionlyfans;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class sugerencias_perfiles extends AppCompatActivity {
-
-    ImageButton home;
-    ImageButton explorar;
-    ImageButton posts;
-    ImageButton perfil;
     FirebaseAuth firebaseAuth;
 
     ImageView fotoPerfilUsuario;
@@ -45,11 +40,6 @@ public class sugerencias_perfiles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sugerencias_perfiles);
-
-        home = findViewById(R.id.home);
-        explorar = findViewById(R.id.explorar);
-        posts = findViewById(R.id.posts);
-        perfil = findViewById(R.id.perfil);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -68,42 +58,38 @@ public class sugerencias_perfiles extends AppCompatActivity {
         adaptador = new adaptadorPerfiles(perfilList);
         recyclerViewPerfiles.setAdapter(adaptador);
 
-        home.setOnClickListener(new View.OnClickListener() {
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(sugerencias_perfiles.this, menu_inicial.class);
-                startActivity(intent);
-                finish();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.buttonHome) {
+                    Intent intentHome = new Intent(sugerencias_perfiles.this, menu_inicial.class);
+                    startActivity(intentHome);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonSugerencias) {
+                    Intent intentSugerencias = new Intent(sugerencias_perfiles.this, sugerencias_perfiles.class);
+                    startActivity(intentSugerencias);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonPost) {
+                    Intent intentPost = new Intent(sugerencias_perfiles.this, subir_posts.class);
+                    startActivity(intentPost);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonProfile) {
+                    Intent intentProfile = new Intent(sugerencias_perfiles.this, perfil_ajustes.class);
+                    startActivity(intentProfile);
+                    finish();
+                    return true;
+                }
+
+                return false;
             }
         });
-
-        explorar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(sugerencias_perfiles.this, sugerencias_perfiles.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        posts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(sugerencias_perfiles.this, subir_posts.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(sugerencias_perfiles.this, perfil_ajustes.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         obtenerPerfiles();
 
     }

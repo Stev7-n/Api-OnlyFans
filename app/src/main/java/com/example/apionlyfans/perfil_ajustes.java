@@ -3,9 +3,9 @@ package com.example.apionlyfans;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,10 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class perfil_ajustes extends AppCompatActivity {
 
-    ImageButton home;
-    ImageButton explorar;
-    ImageButton posts;
-    ImageButton perfil;
     ImageView cambiarFotoPerfil;
     FirebaseAuth firebaseAuth;
 
@@ -40,10 +37,6 @@ public class perfil_ajustes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_ajustes);
 
-        home = findViewById(R.id.home);
-        explorar = findViewById(R.id.explorar);
-        posts = findViewById(R.id.posts);
-        perfil = findViewById(R.id.perfil);
         cambiarFotoPerfil = findViewById(R.id.cambiarFotoPerfil);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -53,39 +46,36 @@ public class perfil_ajustes extends AppCompatActivity {
 
         editarPerfil = findViewById(R.id.editarPerfil);
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(perfil_ajustes.this, menu_inicial.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        explorar.setOnClickListener(new View.OnClickListener() {
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(perfil_ajustes.this, sugerencias_perfiles.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-        posts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(perfil_ajustes.this, subir_posts.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+                if (itemId == R.id.buttonHome) {
+                    Intent intentHome = new Intent(perfil_ajustes.this, menu_inicial.class);
+                    startActivity(intentHome);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonSugerencias) {
+                    Intent intentSugerencias = new Intent(perfil_ajustes.this, sugerencias_perfiles.class);
+                    startActivity(intentSugerencias);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonPost) {
+                    Intent intentPost = new Intent(perfil_ajustes.this, subir_posts.class);
+                    startActivity(intentPost);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonProfile) {
+                    Intent intentProfile = new Intent(perfil_ajustes.this, perfil_ajustes.class);
+                    startActivity(intentProfile);
+                    finish();
+                    return true;
+                }
 
-        perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(perfil_ajustes.this, perfil_ajustes.class);
-                startActivity(intent);
-                finish();
+                return false;
             }
         });
 

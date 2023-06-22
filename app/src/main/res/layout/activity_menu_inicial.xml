@@ -90,68 +90,15 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline8m"
         app:layout_constraintStart_toStartOf="@+id/guideline7m">
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="15.dp"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            style="@style/Widget.MaterialComponents.BottomNavigationView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="#FFFFFF"
-            app:srcCompat="@drawable/home"
-            android:tint="@color/blue_light"
-            tools:ignore="ContentDescription,UseAppTint"
-            android:scaleType="centerInside"
-            android:alpha="0.8" />
-
-        <ImageButton
-            android:id="@+id/explorar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            app:srcCompat="@drawable/explore"
-            android:tint="@color/blue_light"
-            tools:ignore="ContentDescription,UseAppTint"
-            android:scaleType="centerInside"
-            android:alpha="0.8" />
-
-        <ImageButton
-            android:id="@+id/posts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0.8"
-            android:background="#FFFFFF"
-            android:scaleType="centerInside"
-            android:tint="@color/blue_light"
-            app:srcCompat="@drawable/mail"
-            tools:ignore="ContentDescription,UseAppTint" />
-
-        <ImageButton
-            android:id="@+id/perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            app:srcCompat="@drawable/profile"
-            android:tint="@color/blue_light"
-            tools:ignore="ContentDescription,UseAppTint"
-            android:scaleType="centerInside"
-            android:alpha="0.8" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="15dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            app:menu="@menu/botones" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

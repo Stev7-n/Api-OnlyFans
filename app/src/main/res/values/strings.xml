@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Api OnlyFans</string>
     <string name="follow">Follow</string>
+    <string name="profile">Profile</string>
+    <string name="post">Post</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="home">Home</string>
 </resources>

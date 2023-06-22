@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/buttonHome"
+        android:enabled="true"
+        android:icon="@drawable/homevector"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/buttonSugerencias"
+        android:enabled="true"
+        android:icon="@drawable/explorarvector"
+        android:title="@string/suggestions"/>
+    <item
+        android:id="@+id/buttonPost"
+        android:enabled="true"
+        android:icon="@drawable/postvector"
+        android:title="@string/post"/>
+    <item
+        android:id="@+id/buttonProfile"
+        android:enabled="true"
+        android:icon="@drawable/perfilvector"
+        android:title="@string/profile"/>
+
+</menu>

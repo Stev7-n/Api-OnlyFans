@@ -1,5 +1,6 @@
 package com.example.apionlyfans;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,10 +8,10 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -41,10 +43,6 @@ import java.util.Map;
 public class subir_posts extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    ImageButton home;
-    ImageButton explorar;
-    ImageButton posts;
-    ImageButton perfil;
     FirebaseAuth firebaseAuth;
 
     EditText tituloSubirPost;
@@ -67,11 +65,6 @@ public class subir_posts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subir_posts);
 
-        home = findViewById(R.id.home);
-        explorar = findViewById(R.id.explorar);
-        posts = findViewById(R.id.posts);
-        perfil = findViewById(R.id.perfil);
-
         tituloSubirPost = findViewById(R.id.tituloSubirPost);
         descripcionSubirPost = findViewById(R.id.descripcionSubirPost);
         subirImagenPost = findViewById(R.id.subirImagenPost);
@@ -80,39 +73,36 @@ public class subir_posts extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(subir_posts.this, menu_inicial.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        explorar.setOnClickListener(new View.OnClickListener() {
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(subir_posts.this, sugerencias_perfiles.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-        posts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(subir_posts.this, subir_posts.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+                if (itemId == R.id.buttonHome) {
+                    Intent intentHome = new Intent(subir_posts.this, menu_inicial.class);
+                    startActivity(intentHome);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonSugerencias) {
+                    Intent intentSugerencias = new Intent(subir_posts.this, sugerencias_perfiles.class);
+                    startActivity(intentSugerencias);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonPost) {
+                    Intent intentPost = new Intent(subir_posts.this, subir_posts.class);
+                    startActivity(intentPost);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonProfile) {
+                    Intent intentProfile = new Intent(subir_posts.this, perfil_ajustes.class);
+                    startActivity(intentProfile);
+                    finish();
+                    return true;
+                }
 
-        perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(subir_posts.this, perfil_ajustes.class);
-                startActivity(intent);
-                finish();
+                return false;
             }
         });
 

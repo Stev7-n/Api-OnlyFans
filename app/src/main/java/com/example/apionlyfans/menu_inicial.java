@@ -3,13 +3,14 @@ package com.example.apionlyfans;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,10 +19,7 @@ import java.util.List;
 
 public class menu_inicial extends AppCompatActivity {
 
-    ImageButton home;
-    ImageButton explorar;
-    ImageButton posts;
-    ImageButton perfil;
+    BottomNavigationView bottomNavigation;
     FirebaseAuth firebaseAuth;
 
     RecyclerView recyclerView;
@@ -34,48 +32,43 @@ public class menu_inicial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicial);
 
-        home = findViewById(R.id.home);
-        explorar = findViewById(R.id.explorar);
-        posts = findViewById(R.id.posts);
-        perfil = findViewById(R.id.perfil);
-
         firebaseAuth = FirebaseAuth.getInstance();
 
-        home.setOnClickListener(new View.OnClickListener() {
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(menu_inicial.this, menu_inicial.class);
-                startActivity(intent);
-                finish();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.buttonHome) {
+                    Intent intentHome = new Intent(menu_inicial.this, menu_inicial.class);
+                    startActivity(intentHome);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonSugerencias) {
+                    Intent intentSugerencias = new Intent(menu_inicial.this, sugerencias_perfiles.class);
+                    startActivity(intentSugerencias);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonPost) {
+                    Intent intentPost = new Intent(menu_inicial.this, subir_posts.class);
+                    startActivity(intentPost);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.buttonProfile) {
+                    Intent intentProfile = new Intent(menu_inicial.this, perfil_ajustes.class);
+                    startActivity(intentProfile);
+                    finish();
+                    return true;
+                }
+
+                return false;
             }
         });
 
-        explorar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(menu_inicial.this, sugerencias_perfiles.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
-        posts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(menu_inicial.this, subir_posts.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
-        perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(menu_inicial.this, perfil_ajustes.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         recyclerView = findViewById(R.id.recyclerView);
         postList = new ArrayList<>();
