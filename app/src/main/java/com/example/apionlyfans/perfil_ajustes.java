@@ -3,7 +3,6 @@ package com.example.apionlyfans;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,8 +28,16 @@ public class perfil_ajustes extends AppCompatActivity {
     TextView nombreUsuarioPerfil;
     TextView nombreUsuarioPerfilJunto;
     Button editarPerfil;
-    RecyclerView recycler_publicaciones_propias;
 
+    Button publicaciones_propias;
+    Button seguidores_usuario;
+    RecyclerView recycler_publicaciones_propias;
+    RecyclerView recycler_seguidores_usuario;
+
+
+    private boolean mostrarPublicacionesPropias = true;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,45 +51,37 @@ public class perfil_ajustes extends AppCompatActivity {
         nombreUsuarioPerfilJunto = findViewById(R.id.nombreUsuarioPerfilJunto);
 
         editarPerfil = findViewById(R.id.editarPerfil);
+        publicaciones_propias = findViewById(R.id.publicaciones_propias);
+        seguidores_usuario = findViewById(R.id.seguidores_usuario);
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemId = item.getItemId();
-
-                if (itemId == R.id.buttonHome) {
-                    Intent intentHome = new Intent(perfil_ajustes.this, menu_inicial.class);
-                    startActivity(intentHome);
-                    finish();
-                    return true;
-                } else if (itemId == R.id.buttonSugerencias) {
-                    Intent intentSugerencias = new Intent(perfil_ajustes.this, sugerencias_perfiles.class);
-                    startActivity(intentSugerencias);
-                    finish();
-                    return true;
-                } else if (itemId == R.id.buttonPost) {
-                    Intent intentPost = new Intent(perfil_ajustes.this, subir_posts.class);
-                    startActivity(intentPost);
-                    finish();
-                    return true;
-                } else if (itemId == R.id.buttonProfile) {
-                    Intent intentProfile = new Intent(perfil_ajustes.this, perfil_ajustes.class);
-                    startActivity(intentProfile);
-                    finish();
-                    return true;
-                }
-
-                return false;
-            }
-        });
+        recycler_seguidores_usuario = findViewById(R.id.recycler_seguidores_usuario);
 
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(perfil_ajustes.this, ajustar_perfil.class);
                 startActivity(intent);
+            }
+        });
+
+        publicaciones_propias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mostrarPublicacionesPropias) {
+                    mostrarRecyclerPublicacionesPropias();
+                    mostrarPublicacionesPropias = true;
+                }
+            }
+        });
+
+        seguidores_usuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mostrarPublicacionesPropias) {
+                    mostrarRecyclerSeguidoresUsuario();
+                    mostrarPublicacionesPropias = false;
+                }
             }
         });
 
@@ -114,5 +112,15 @@ public class perfil_ajustes extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void mostrarRecyclerPublicacionesPropias() {
+        recycler_publicaciones_propias.setVisibility(View.VISIBLE);
+        recycler_seguidores_usuario.setVisibility(View.GONE);
+    }
+
+    private void mostrarRecyclerSeguidoresUsuario() {
+        recycler_seguidores_usuario.setVisibility(View.VISIBLE);
+        recycler_publicaciones_propias.setVisibility(View.GONE);
     }
 }

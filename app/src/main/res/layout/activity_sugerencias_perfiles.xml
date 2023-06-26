@@ -66,34 +66,13 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="369dp"
-        android:layout_height="70dp"
-        android:background="@drawable/fondo_redondeado_2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8s"
-        app:layout_constraintStart_toStartOf="@+id/guideline7s">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            style="@style/Widget.MaterialComponents.BottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:menu="@menu/botones" />
-
-    </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPerfiles"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6s"
         app:layout_constraintEnd_toStartOf="@+id/guideline8s"
         app:layout_constraintStart_toStartOf="@+id/guideline7s"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutSugerencias" />

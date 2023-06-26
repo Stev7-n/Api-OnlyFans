@@ -17,45 +17,48 @@
         android:theme="@style/Theme.ApiOnlyFans"
         tools:targetApi="31">
         <activity
-            android:name=".ajustar_perfil"
-            android:screenOrientation="locked"
+            android:name=".bar_bottom"
             android:exported="false" />
+        <activity
+            android:name=".ajustar_perfil"
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".card_view_perfiles"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".card_view_posts"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".perfil_ajustes"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".subir_posts"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".sugerencias_perfiles"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".menu_inicial"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".registrarse_only"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".iniciar_sesion"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="locked"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

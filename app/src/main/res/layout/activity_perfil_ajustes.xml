@@ -136,7 +136,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/publicaciones_propias"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -150,7 +150,7 @@
                 tools:ignore="ButtonStyle,HardcodedText" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/seguidores_usuario"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -168,28 +168,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_publicaciones_propias"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/fondo_redondeado_2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8sp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            style="@style/Widget.MaterialComponents.BottomNavigationView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_seguidores_usuario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:menu="@menu/botones" />
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
 
     </LinearLayout>
+
 </LinearLayout>

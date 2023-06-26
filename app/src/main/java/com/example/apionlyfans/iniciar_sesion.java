@@ -131,7 +131,7 @@ public class iniciar_sesion extends AppCompatActivity {
 
     //
     private void goInicio() {
-        Intent intent = new Intent(iniciar_sesion.this, menu_inicial.class);
+        Intent intent = new Intent(iniciar_sesion.this, bar_bottom.class);
         startActivity(intent);
         finish();
     }

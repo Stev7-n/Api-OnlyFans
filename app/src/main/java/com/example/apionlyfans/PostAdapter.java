@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,10 +22,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
-    private List<Post> postList;
+    private static List<Post> postList;
     private DatabaseReference publicacionRef;
     private String userId;
 
@@ -205,7 +207,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                postList.clear();
+                List<Post> newPostList = new ArrayList<>();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String id = snapshot.getKey();
@@ -217,9 +219,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     String fotoUsuario = snapshot.child("fotoUsuario").getValue(String.class);
 
                     Post post = new Post(id, titulo, descripcion, imageUrl, nombreUsuario, apellidoUsuario, fotoUsuario);
-                    postList.add(post);
+                    newPostList.add(post);
                 }
-                notifyDataSetChanged();
+
+                updateData(newPostList);
             }
 
             @Override
@@ -227,4 +230,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             }
         });
     }
+
+    public void updateData(List<Post> newPostList) {
+        PostDiffCallback diffCallback = new PostDiffCallback(postList, newPostList);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        postList.clear();
+        postList.addAll(newPostList);
+        diffResult.dispatchUpdatesTo(this);
+    }
+
 }

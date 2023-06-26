@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -68,11 +69,12 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        android:gravity="center"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline8sp"
         app:layout_constraintStart_toStartOf="@+id/guideline7sp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPosts"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPosts">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -81,68 +83,48 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
-
 
                 <EditText
                     android:id="@+id/tituloSubirPost"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:ems="20"
-                    android:maxLength="20"
-                    android:hint="Titulo Publicacion"
-                    android:inputType="text" />
+                    android:hint="@string/titulo_publicacion"
+                    android:inputType="text"
+                    android:maxLength="20" />
 
                 <EditText
                     android:id="@+id/descripcionSubirPost"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:ems="10"
-                    android:maxLength="90"
                     android:gravity="start|top"
-                    android:hint="Descripcion Publicacion"
-                    android:inputType="textMultiLine" />
+                    android:hint="@string/descripcion_publicacion"
+                    android:inputType="textMultiLine"
+                    android:maxLength="90" />
 
                 <ImageView
                     android:id="@+id/subirImagenPost"
                     android:layout_width="240sp"
-                    android:layout_gravity="center"
-                    android:layout_height="240sp" />
+                    android:layout_height="240sp"
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/seleccionarImagenButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Seleccionar Imagen" />
+                    android:text="@string/seleccionar_imagen" />
 
                 <Button
                     android:id="@+id/subirPost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Subir" />
+                    android:text="@string/subir" />
+
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="369dp"
-        android:layout_height="70dp"
-        android:background="@drawable/fondo_redondeado_2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7sp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            style="@style/Widget.MaterialComponents.BottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:menu="@menu/botones" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

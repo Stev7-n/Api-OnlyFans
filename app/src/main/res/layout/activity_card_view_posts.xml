@@ -96,7 +96,7 @@
 
                 <ImageButton
                     android:id="@+id/meEncanta"
-                    android:layout_width="32dp"
+                    android:layout_width="40dp"
                     android:scaleType="fitXY"
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
@@ -114,7 +114,7 @@
 
                 <ImageButton
                     android:id="@+id/comentarios"
-                    android:layout_width="30dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:background="@color/white"
@@ -127,8 +127,8 @@
 
                 <ImageButton
                     android:id="@+id/favoritos"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:scaleType="fitXY"
                     android:layout_marginEnd="20dp"
                     android:background="@color/white"

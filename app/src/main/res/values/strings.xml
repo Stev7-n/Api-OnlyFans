@@ -5,4 +5,8 @@
     <string name="post">Post</string>
     <string name="suggestions">Suggestions</string>
     <string name="home">Home</string>
+    <string name="titulo_publicacion">Titulo Publicacion</string>
+    <string name="descripcion_publicacion">Descripcion Publicacion</string>
+    <string name="seleccionar_imagen">Seleccionar Imagen</string>
+    <string name="subir">Subir</string>
 </resources>
