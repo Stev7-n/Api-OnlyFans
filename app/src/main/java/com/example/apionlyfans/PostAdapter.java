@@ -32,7 +32,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     public PostAdapter(List<Post> postList) {
         this.postList = postList;
-        publicacionRef = FirebaseDatabase.getInstance().getReference("publicaciones6");
+        publicacionRef = FirebaseDatabase.getInstance().getReference("publicaciones7");
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
@@ -202,7 +202,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     public void obtenerPublicaciones(boolean principal) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("publicaciones6");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("publicaciones7");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

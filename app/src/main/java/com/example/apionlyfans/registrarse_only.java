@@ -88,6 +88,7 @@ public class registrarse_only extends AppCompatActivity {
 
                                         currentUserRef.child("firstName").setValue(firstName);
                                         currentUserRef.child("lastName").setValue(lastName);
+                                        currentUserRef.child("identifier").setValue(userId);
 
                                         subirImagenFirebase(userId);
 

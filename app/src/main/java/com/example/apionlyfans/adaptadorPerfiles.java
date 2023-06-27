@@ -93,11 +93,13 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
         private String foto;
         private String name;
         private String nick;
+        private String identificador;
 
-        public Perfil(String foto, String name, String nick) {
+        public Perfil(String foto, String name, String nick, String identificador) {
             this.foto = foto;
             this.name = name;
             this.nick = nick;
+            this.identificador = identificador;
         }
 
         public String getFoto() {
@@ -108,6 +110,9 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
         }
         public String getNick() {
             return "@" + name.toLowerCase() + nick.toLowerCase();
+        }
+        public String getIdentificador() {
+            return identificador;
         }
     }
 
@@ -124,8 +129,9 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
                     String foto = snapshot1.child("fotoPerfil").getValue(String.class);
                     String nombre = snapshot1.child("firstName").getValue(String.class);
                     String usuario = snapshot1.child("lastName").getValue(String.class);
+                    String identificador = snapshot1.child("identifier").getValue(String.class);
 
-                    Perfil perfil = new Perfil(foto, nombre, usuario);
+                    Perfil perfil = new Perfil(foto, nombre, usuario, identificador);
                     perfilList.add(perfil);
                 }
                 notifyDataSetChanged();

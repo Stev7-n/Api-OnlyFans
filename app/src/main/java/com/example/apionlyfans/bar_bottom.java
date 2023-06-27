@@ -201,7 +201,7 @@ public class bar_bottom extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        publicacionesRef = FirebaseDatabase.getInstance().getReference().child("publicaciones6");
+        publicacionesRef = FirebaseDatabase.getInstance().getReference().child("publicaciones7");
         storageRef = FirebaseStorage.getInstance().getReference().child("imagenes_publicaciones");
 
         //subir_post
