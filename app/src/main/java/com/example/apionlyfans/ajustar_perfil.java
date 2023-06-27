@@ -114,9 +114,29 @@ public class ajustar_perfil extends AppCompatActivity {
             return;
         }
 
+        if (!validarCadena(nuevoFirstName)) {
+            Toast.makeText(this, "El campo 'First Name' contiene caracteres inválidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validarCadena(nuevoLastName)) {
+            Toast.makeText(this, "El campo 'Last Name' contiene caracteres inválidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validarCadena(nuevoUsuario)) {
+            Toast.makeText(this, "El campo 'Usuario' contiene caracteres inválidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validarCadena(nacionalidad)) {
+            Toast.makeText(this, "El campo 'Nacionalidad' contiene caracteres inválidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int edadInt = Integer.parseInt(edad);
         if (edadInt < 18) {
-            Toast.makeText(this, "Debes ser mayor de edad para crear una cuenta en esta aplicacion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Debes ser mayor de edad para crear una cuenta en esta aplicación", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -140,6 +160,11 @@ public class ajustar_perfil extends AppCompatActivity {
         } else {
             guardarDatosUsuarioSinFoto(datosUsuario);
         }
+    }
+
+    private boolean validarCadena(String cadena) {
+        String regex = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<> ]+$";
+        return cadena.matches(regex);
     }
 
     private void subirFotoPerfil(final Map<String, Object> datosUsuario) {
@@ -190,7 +215,7 @@ public class ajustar_perfil extends AppCompatActivity {
     }
 
     private void irPerfilAjustes() {
-        Intent intent = new Intent(ajustar_perfil.this, perfil_ajustes.class);
+        Intent intent = new Intent(ajustar_perfil.this, bar_bottom.class);
         startActivity(intent);
         finish();
     }

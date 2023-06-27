@@ -36,14 +36,6 @@
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".subir_posts"
-            android:exported="false"
-            android:screenOrientation="locked" />
-        <activity
-            android:name=".sugerencias_perfiles"
-            android:exported="false"
-            android:screenOrientation="locked" />
-        <activity
             android:name=".menu_inicial"
             android:exported="false"
             android:screenOrientation="locked" />
