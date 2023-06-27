@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
-    private static List<Post> postList;
+    private List<Post> postList;
     private DatabaseReference publicacionRef;
-    private String userId;
+    public static String userId;
 
     public PostAdapter(List<Post> postList) {
         this.postList = postList;
@@ -201,7 +201,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         });
     }
 
-    public void obtenerPublicaciones() {
+    public void obtenerPublicaciones(boolean principal) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("publicaciones6");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -211,6 +211,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String id = snapshot.getKey();
+                    String userId = snapshot.child("userId").getValue(String.class);
                     String titulo = snapshot.child("titulo").getValue(String.class);
                     String descripcion = snapshot.child("descripcion").getValue(String.class);
                     String imageUrl = snapshot.child("imagen").getValue(String.class);
@@ -219,7 +220,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     String fotoUsuario = snapshot.child("fotoUsuario").getValue(String.class);
 
                     Post post = new Post(id, titulo, descripcion, imageUrl, nombreUsuario, apellidoUsuario, fotoUsuario);
-                    newPostList.add(post);
+
+                    if (principal){
+
+                        newPostList.add(post);
+
+                    } else if (nombreUsuario != null && PostAdapter.userId.equals(userId)) {
+
+                        newPostList.add(post);
+
+                    }
+
                 }
 
                 updateData(newPostList);

@@ -168,7 +168,7 @@ public class bar_bottom extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(postAdapter);
 
-        postAdapter.obtenerPublicaciones();
+        postAdapter.obtenerPublicaciones(true);
 
 
         //sugerencias_perfiles
@@ -285,9 +285,16 @@ public class bar_bottom extends AppCompatActivity {
         seguidores_usuario = findViewById(R.id.seguidores_usuario);
 
         recycler_publicaciones_propias = findViewById(R.id.recycler_publicaciones_propias);
-        postList = new ArrayList<>();
-        postAdapter2 = new PostAdapter(postList);
+        postList2 = new ArrayList<>();
+        postAdapter2 = new PostAdapter(postList2);
 
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
+        layoutManager2.setReverseLayout(true);
+        layoutManager2.setStackFromEnd(true);
+        recycler_publicaciones_propias.setLayoutManager(layoutManager2);
+        recycler_publicaciones_propias.setAdapter(postAdapter2);
+
+        postAdapter2.obtenerPublicaciones(false);
 
         recycler_seguidores_usuario = findViewById(R.id.recycler_seguidores_usuario);
 

@@ -41,7 +41,7 @@ public class menu_inicial extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(postAdapter);
 
-        postAdapter.obtenerPublicaciones();
+        postAdapter.obtenerPublicaciones(true);
     }
 
     @Override
