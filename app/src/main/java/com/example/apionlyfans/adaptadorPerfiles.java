@@ -3,6 +3,7 @@ package com.example.apionlyfans;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.perfilViewHolder> {
 
     private List<Perfil> perfilList;
+    private boolean isFollowing = false;
 
     public adaptadorPerfiles(List<Perfil> perfilList) {
         this.perfilList = perfilList;
@@ -37,6 +39,20 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
     public void onBindViewHolder(@NonNull adaptadorPerfiles.perfilViewHolder holder, int position) {
         adaptadorPerfiles.Perfil post = perfilList.get(position);
         holder.bind(post);
+
+        holder.follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isFollowing) {
+                    holder.follow.setText("Follow");
+                    isFollowing = false;
+                } else {
+                    holder.follow.setText("Following");
+                    isFollowing = true;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -49,6 +65,7 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
         private ImageView fotoPerfilUsuario;
         private TextView nombrePerfil;
         private TextView usuarioPerfil;
+        private Button follow;
 
         public perfilViewHolder(View itemView) {
             super(itemView);
@@ -56,6 +73,7 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
             fotoPerfilUsuario = itemView.findViewById(R.id.fotoPerfilUsuario);
             nombrePerfil = itemView.findViewById(R.id.nombrePerfil);
             usuarioPerfil = itemView.findViewById(R.id.usuarioPerfil);
+            follow = itemView.findViewById(R.id.follow);
 
         }
 
@@ -93,6 +111,7 @@ public class adaptadorPerfiles extends RecyclerView.Adapter<adaptadorPerfiles.pe
         }
     }
 
+    //bar_bottom
     public void obtenerPerfiles() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 

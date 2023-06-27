@@ -163,7 +163,7 @@ public class registrarse_only extends AppCompatActivity {
                             currentUserRef.child("fotoPerfil").setValue(fotoPerfilUrl);
 
                             Toast.makeText(registrarse_only.this, "Cuenta creada con éxito", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(registrarse_only.this, menu_inicial.class);
+                            Intent intent = new Intent(registrarse_only.this, bar_bottom.class);
                             startActivity(intent);
                             finish();
                         }

@@ -189,7 +189,7 @@ public class bar_bottom extends AppCompatActivity {
         adaptador = new adaptadorPerfiles(perfilList);
         recyclerViewPerfiles.setAdapter(adaptador);
 
-        obtenerPerfiles();
+        adaptador.obtenerPerfiles();
 
 
         //subir_post
@@ -369,7 +369,6 @@ public class bar_bottom extends AppCompatActivity {
     }
 
 
-
     //menu_inicial
     @Override
     protected void onStart() {
@@ -387,36 +386,7 @@ public class bar_bottom extends AppCompatActivity {
     }
 
 
-
     //sugerenciasperfil
-    public void obtenerPerfiles() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                perfilList.clear();
-
-                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                    String foto = snapshot1.child("fotoPerfil").getValue(String.class);
-                    String nombre = snapshot1.child("firstName").getValue(String.class);
-                    String usuario = snapshot1.child("lastName").getValue(String.class);
-
-                    adaptadorPerfiles.Perfil perfil = new adaptadorPerfiles.Perfil(foto, nombre, usuario);
-                    perfilList.add(perfil);
-                }
-
-                adaptador.notifyDataSetChanged();
-                recyclerViewPerfiles.scrollToPosition(perfilList.size() - 1);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
 
 
@@ -511,7 +481,6 @@ public class bar_bottom extends AppCompatActivity {
         subirPost.setEnabled(false);
         isBotonSubirEnabled = false;
     }
-
 
 
     //perfil_ajustes
